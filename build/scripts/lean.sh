@@ -27,9 +27,15 @@ rm -rf ./feeds/luci/applications/luci-app-control-timewol
 rm -rf ./feeds/luci/applications/luci-app-control-webrestriction
 rm -rf ./feeds/luci/applications/luci-app-control-weburl
 
+# remove uhttpd
+sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
+
 # Clone community packages
 mkdir package/community
 pushd package/community
+
+# Add luci-app-nginx-manager
+git clone https://github.com/sun-cut/luci-app-nginx-manager
 
 # Add Lienol's Packages
 git clone --depth=1 https://github.com/Lienol/openwrt-package
